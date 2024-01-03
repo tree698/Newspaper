@@ -9,3 +9,6 @@ ko_sources = {
     '한경': 'https://media.naver.com/press/015/newspaper',
     '매경': 'https://media.naver.com/press/009/newspaper',
 }
+
+
+
