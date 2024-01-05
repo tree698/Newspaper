@@ -1,7 +1,7 @@
 import os, dotenv, requests
 from datetime import datetime, timedelta
 from crawling import WebCrawling
-from web_address import ko_sources, ko_selector, en_sources, en_selector
+from web_address import ko_jp_sources, ko_jp_selector, en_sources, en_selector
 
 dotenv.load_dotenv()
 sheety_endpoint_ko = os.getenv('SHEETY_ENDPOINT_KO')
@@ -39,10 +39,13 @@ def reset_body(source):
         del body['news'][key]
 
 
-# TODO 1. Korean Newspapers
-for key, url in ko_sources.items():
+# TODO 1. Korean + Japanese Newspapers
+for key, url in ko_jp_sources.items():
     crawled = WebCrawling(url)
-    crawled_news = crawled.news(ko_selector['selector'])
+    if key == 'asahi':
+        crawled_news = crawled.jp_news(ko_jp_selector['asahi'])
+    else:
+        crawled_news = crawled.news(ko_jp_selector['selector'])
     body['news'][key] = crawled_news
     save(today_formatted, key, crawled_news)
 
@@ -50,7 +53,7 @@ body['news']['date'] = today_formatted
 body['news']['week'] = week_today
 sheety(sheety_endpoint_ko, body, bearer_header)
 print(body)
-reset_body(ko_sources)
+reset_body(ko_jp_sources)
 
 
 # TODO 2. English Newspapers
@@ -60,13 +63,12 @@ for key, url in en_sources.items():
     body['news'][key] = crawled_news
     save(yesterday_formatted, key, crawled_news)
 
+
 body['news']['date'] = yesterday_formatted
 body['news']['week'] = week_yesterday
 sheety(sheety_endpoint_en, body, bearer_header)
 print(body)
 reset_body(en_sources)
-
-
 
 
 
@@ -79,12 +81,6 @@ reset_body(en_sources)
 # for x in sep:
 #     print(x)
 
-# Asahi => Font problem
-# crawled =WebCrawling('https://www.asahi.com/shimen/20240103/?iref=pc_gnavi')
-# crawled_news = crawled.news('#shimen-digest > ul > li')
-# sep = crawled_news.split('&&&')
-# for x in sep:
-#     print(x)
 
 
 
