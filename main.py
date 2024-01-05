@@ -59,7 +59,10 @@ reset_body(ko_jp_sources)
 # TODO 2. English Newspapers
 for key, url in en_sources.items():
     crawled = WebCrawling(url)
-    crawled_news = crawled.news(en_selector[key])
+    if key == 'wsj':
+        crawled_news = crawled.wsj_news(en_selector[key])
+    else:
+        crawled_news = crawled.news(en_selector[key])
     body['news'][key] = crawled_news
     save(yesterday_formatted, key, crawled_news)
 
@@ -74,12 +77,7 @@ reset_body(en_sources)
 
 
 
-# The Wall Street Journal => 403
-# crawled =WebCrawling('https://www.wsj.com/print-edition/20240103/frontpage')
-# crawled_news = crawled.news('.WSJTheme--headline--unZqjb45 reset WSJTheme--heading-3--2z_phq5h typography--serif-display--ZXeuhS5E')
-# sep = crawled_news.split('&&&')
-# for x in sep:
-#     print(x)
+
 
 
 

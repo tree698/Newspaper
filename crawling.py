@@ -1,5 +1,6 @@
-import requests
+import requests, random
 from bs4 import BeautifulSoup
+from web_address import fake_user_agents
 
 
 class WebCrawling:
@@ -15,7 +16,7 @@ class WebCrawling:
         title_list = [title.getText().strip() for title in titles]
         return '&&&'.join(title_list)
 
-    """
+    """ 
     Ref) Stack Overflow
     https://stackoverflow.com/questions/57983718/could-not-scrape-a-japanese-website-using-beautifulsoup
     """
@@ -32,4 +33,12 @@ class WebCrawling:
         soup = BeautifulSoup(contents.content, 'html.parser')
         titles = soup.select(css_selector)
         title_list = [title.getText().strip().replace(u"\u3000", " ") for title in titles]
+        return '&&&'.join(title_list)
+
+    def wsj_news(self, css_selector):
+        response = requests.get(self.url, headers={'User-Agent': random.choice(fake_user_agents)})
+        response.raise_for_status()
+        soup = BeautifulSoup(response.text, 'html.parser')
+        titles = soup.select(css_selector)
+        title_list = [title.getText().strip() for title in titles]
         return '&&&'.join(title_list)
