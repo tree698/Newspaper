@@ -42,8 +42,10 @@ def reset_body(source):
 # TODO 1. Korean + Japanese Newspapers
 for key, url in ko_jp_sources.items():
     crawled = WebCrawling(url)
-    if key == 'asahi':
-        crawled_news = crawled.jp_news(ko_jp_selector['asahi'])
+    if key == 'asahimorning':
+        crawled_news = crawled.jp_news(ko_jp_selector['asahimorning'])
+    elif key == 'asahinight':
+        crawled_news = crawled.jp_news(ko_jp_selector['asahinight'])
     else:
         crawled_news = crawled.news(ko_jp_selector['selector'])
     body['news'][key] = crawled_news
@@ -57,21 +59,21 @@ reset_body(ko_jp_sources)
 
 
 # TODO 2. English Newspapers
-# for key, url in en_sources.items():
-#     crawled = WebCrawling(url)
-#     if key == 'wsj':
-#         crawled_news = crawled.wsj_news(en_selector[key])
-#     else:
-#         crawled_news = crawled.news(en_selector[key])
-#     body['news'][key] = crawled_news
-#     save(yesterday_formatted, key, crawled_news)
-#
-#
-# body['news']['date'] = yesterday_formatted
-# body['news']['week'] = week_yesterday
-# sheety(sheety_endpoint_en, body, bearer_header)
-# print(body)
-# reset_body(en_sources)
+for key, url in en_sources.items():
+    crawled = WebCrawling(url)
+    if key == 'wsj':
+        crawled_news = crawled.wsj_news(en_selector[key])
+    else:
+        crawled_news = crawled.news(en_selector[key])
+    body['news'][key] = crawled_news
+    save(yesterday_formatted, key, crawled_news)
+
+
+body['news']['date'] = yesterday_formatted
+body['news']['week'] = week_yesterday
+sheety(sheety_endpoint_en, body, bearer_header)
+print(body)
+reset_body(en_sources)
 
 
 

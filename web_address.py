@@ -16,12 +16,14 @@ ko_jp_sources = {
     '국민': 'https://media.naver.com/press/005/newspaper',
     '한경': 'https://media.naver.com/press/015/newspaper',
     '매경': 'https://media.naver.com/press/009/newspaper',
-    'asahi': f'https://www.asahi.com/shimen/{today_formatted}/?iref=pc_gnavi'
+    'asahimorning': f'https://www.asahi.com/shimen/{today_formatted}/?iref=pc_gnavi',
+    'asahinight': f'https://www.asahi.com/shimen/{yesterday_formatted}ev/?iref=pc_gnavi'
 }
 
 ko_jp_selector = {
     'selector': '._persist_wrap > div:nth-child(1) > div:nth-child(1) .newspaper_brick_item._start_page li',
-    'asahi': '#shimen-digest > ul > li > a'
+    'asahimorning': '#shimen-digest > ul > li > a',
+    'asahinight': '.List.ListSideImage.ListHeadline li:not(:first-child):not(:last-child)'
 }
 
 en_sources = {
