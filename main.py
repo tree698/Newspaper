@@ -57,21 +57,21 @@ reset_body(ko_jp_sources)
 
 
 # TODO 2. English Newspapers
-for key, url in en_sources.items():
-    crawled = WebCrawling(url)
-    if key == 'wsj':
-        crawled_news = crawled.wsj_news(en_selector[key])
-    else:
-        crawled_news = crawled.news(en_selector[key])
-    body['news'][key] = crawled_news
-    save(yesterday_formatted, key, crawled_news)
-
-
-body['news']['date'] = yesterday_formatted
-body['news']['week'] = week_yesterday
-sheety(sheety_endpoint_en, body, bearer_header)
-print(body)
-reset_body(en_sources)
+# for key, url in en_sources.items():
+#     crawled = WebCrawling(url)
+#     if key == 'wsj':
+#         crawled_news = crawled.wsj_news(en_selector[key])
+#     else:
+#         crawled_news = crawled.news(en_selector[key])
+#     body['news'][key] = crawled_news
+#     save(yesterday_formatted, key, crawled_news)
+#
+#
+# body['news']['date'] = yesterday_formatted
+# body['news']['week'] = week_yesterday
+# sheety(sheety_endpoint_en, body, bearer_header)
+# print(body)
+# reset_body(en_sources)
 
 
 

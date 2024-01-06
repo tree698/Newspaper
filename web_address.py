@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 
 today = datetime.now()
+today_formatted = today.strftime("%Y%m%d")
 yesterday = today - timedelta(days=1)
 yesterday_formatted = yesterday.strftime("%Y%m%d")
 
@@ -15,7 +16,7 @@ ko_jp_sources = {
     '국민': 'https://media.naver.com/press/005/newspaper',
     '한경': 'https://media.naver.com/press/015/newspaper',
     '매경': 'https://media.naver.com/press/009/newspaper',
-    'asahi': 'https://www.asahi.com/shimen/20240103/?iref=pc_gnavi'
+    'asahi': f'https://www.asahi.com/shimen/{today_formatted}/?iref=pc_gnavi'
 }
 
 ko_jp_selector = {
