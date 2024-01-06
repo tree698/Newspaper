@@ -14,7 +14,8 @@ class WebCrawling:
         soup = BeautifulSoup(response.text, 'html.parser')
         titles = soup.select(css_selector)
         title_list = [title.getText().strip() for title in titles]
-        return '&&&'.join(title_list)
+        result = '&&&'.join(title_list)
+        return result if result else 'NaN'
 
     """ 
     Ref) Stack Overflow
@@ -33,7 +34,8 @@ class WebCrawling:
         soup = BeautifulSoup(contents.content, 'html.parser')
         titles = soup.select(css_selector)
         title_list = [title.getText().strip().replace(u"\u3000", " ") for title in titles]
-        return '&&&'.join(title_list)
+        result = '&&&'.join(title_list)
+        return result if result else 'NaN'
 
     def wsj_news(self, css_selector):
         response = requests.get(self.url, headers={'User-Agent': random.choice(fake_user_agents)})
@@ -41,4 +43,5 @@ class WebCrawling:
         soup = BeautifulSoup(response.text, 'html.parser')
         titles = soup.select(css_selector)
         title_list = [title.getText().strip() for title in titles]
-        return '&&&'.join(title_list)
+        result = '&&&'.join(title_list)
+        return result if result else 'NaN'
