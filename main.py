@@ -20,7 +20,7 @@ week_yesterday = yesterday.weekday()
 
 
 def save(date, name_, news):
-    if len(news) == 0:
+    if len(news) == 0 or news == 'NaN':
         print(f'{date} | {name_} is empty.')
     news_list = news.split('&&&')
     for news in news_list:

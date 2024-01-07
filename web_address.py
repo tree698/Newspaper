@@ -23,7 +23,7 @@ ko_jp_sources = {
 ko_jp_selector = {
     'selector': '._persist_wrap > div:nth-child(1) > div:nth-child(1) .newspaper_brick_item._start_page li',
     'asahimorning': '#shimen-digest > ul > li > a',
-    'asahinight': '.List.ListSideImage.ListHeadline li:not(:first-child):not(:last-child)'
+    'asahinight': '.List.ListSideImage.ListHeadline li:not(:last-child)'
 }
 
 en_sources = {
