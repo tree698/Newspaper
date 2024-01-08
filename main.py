@@ -53,7 +53,7 @@ for key, url in ko_jp_sources.items():
 
 body['news']['date'] = today_formatted
 body['news']['week'] = week_today
-# sheety(sheety_endpoint_ko, body, bearer_header)
+sheety(sheety_endpoint_ko, body, bearer_header)
 print(body)
 reset_body(ko_jp_sources)
 
@@ -70,7 +70,7 @@ for key, url in en_sources.items():
 
 body['news']['date'] = yesterday_formatted
 body['news']['week'] = week_yesterday
-# sheety(sheety_endpoint_en, body, bearer_header)
+sheety(sheety_endpoint_en, body, bearer_header)
 print(body)
 reset_body(en_sources)
 

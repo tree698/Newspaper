@@ -34,7 +34,7 @@ en_sources = {
 }
 
 en_selector = {
-    'nyt': '.css-1u3p7j1',
+    'nyt': '.css-14u258h',
     'wp': '#Front-Page .wpds-c-eGurKC',
     'ft': '#top-stories + .layout-desktop__grid-container .text.text--color-black.text-display--scale-3.text--weight-500',
     'wsj': '.WSJTheme--list-item--v87pvXUl a'
