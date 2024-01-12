@@ -51,3 +51,24 @@ class WebCrawling:
         title_list = [title.getText().strip() for title in titles]
         result = '&&&'.join(title_list)
         return result if result else 'NaN'
+
+    def nyt_news(self, css_selector):
+        response = requests.get(self.url)
+        response.raise_for_status()
+        soup = BeautifulSoup(response.text, 'html.parser')
+
+        title_main = soup.select(css_selector[0])
+        title_main_list = [title.getText().strip() for title in title_main]
+
+        length = length_a1(soup, css_selector[1])
+        title_additional = soup.select(f'.css-12y5jls li:nth-child(-n+{length}) h2')
+        title_additional_list = [title.getText().strip() for title in title_additional]
+
+        title_list = title_main_list + title_additional_list
+        result = '&&&'.join(title_list)
+        return result if result else 'NaN'
+
+def length_a1(soup, selector):
+    a1 = soup.select(selector)
+    a1_list = [title for title in a1 if title.getText().strip() == 'Page A1']
+    return len(a1_list)
